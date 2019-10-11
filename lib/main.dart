@@ -32,47 +32,44 @@ class KettinglopersApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      color: Colors.yellow, 
+      title: "Kettinglopers",
+      theme: ThemeData(
+        primarySwatch: Colors.deepOrange,
+        canvasColor: Colors.black,
+        buttonColor: Colors.deepOrange
+        
+      ),
       home: DefaultTabController(
-        length: 3,
+        length: 1,
         child: Scaffold(
           body: TabBarView(
-            children: [
-              
+            children: [              
               DrillTabContainer(),
-/*               Consumer<DrillList>(
-                builder: (context, drills, child) { 
-                   return DrillTabContainer(drills: drills);
-                }
-              ),
- */           
-              SessionTabContainer(),
-              SettingsTabContainer(),
-
+              //SessionTabContainer(),
+              //SettingsTabContainer(),
             ],
           ),
-          bottomNavigationBar: TabBar(
-            isScrollable: true,
+           bottomNavigationBar: TabBar(
             tabs: [
 
               Tab(
-                icon: Icon(Icons.directions_run),
+                //icon: Icon(Icons.directions_run),
                 text: "Oefeningen"
-              ),
-              Tab(
-                icon: Icon(Icons.event_note),
+              ), 
+/*               Tab(
+                //icon: Icon(Icons.event_note),
                 text: "Trainingen"
-              ),
-              Tab(
-                icon: Icon(Icons.settings),
+              ), */
+/*               Tab(
+                //icon: Icon(Icons.settings),
                 text: "Instellingen"
-              ),
+              ), */
             ],
-            labelColor: Colors.blue[700],
-            unselectedLabelColor: Colors.blue[300],
+            //labelColor: Colors.blue[700],
+            //unselectedLabelColor: Colors.blue[300],
             indicatorSize: TabBarIndicatorSize.tab
-          ),
-          backgroundColor: Colors.white,
+          ), 
+          //backgroundColor: Colors.white,
         ),
       ),
     );

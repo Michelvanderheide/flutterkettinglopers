@@ -1,5 +1,5 @@
-name: flutterdemo
-description: A new Flutter project.
+name: kettinglopers
+description: Kettinglopers hardloop app.
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -29,12 +29,18 @@ dependencies:
   cached_network_image: ^1.1.1
   flutter_tags: "^0.4.3"
   flutter_youtube: "^1.1.6"
+  flutter_html: ^0.8.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  flutter_launcher_icons: any
 
+flutter_icons:
+  android: "launcher_icon" 
+  ios: true
+  image_path: "assets/icons/icon.png"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

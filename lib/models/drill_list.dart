@@ -13,24 +13,24 @@ import 'drill.dart';
 class DrillList extends ChangeNotifier {
   final Storage storage = Storage(); 
   List<Drill> drills = [];
-  final List<String>tags = [ "Warming up", "Loopscholing", "Core", "Kern","Mobiliteit","Coordinatie","Kracht","Balans","Arminzet","Schaarbeweging","Storende rotatie","Pasfrequentie","Houding","Vlog","Voeding"];
+  final List<String>tags = [ "Warming up", "Loopscholing", "Core","Mobiliteit","Coordinatie","Kracht","Balans","Arminzet","Schaarbeweging","Storende rotatie","Pasfrequentie","Houding","Vlog","Voeding"];
   List<String> tagFilter = [];
   List<Drill> filteredDrills = [];
 
   Future<List<Drill>> fetchAllCached() async {
-    print("fetchAllCached");
-    print(this.drills.length);
+print("fetchAllCached");
+print(this.drills.length);
     if (this.drills.length==0) {
       this.drills = await storage.readDrills();
 print("fetchAllCached 2:");
 print(this.drills.length);
+      bool modified = false;
       if (await this.isModified()) {
+        modified = true;
         print("modified");
-      } else {
-        print("not modified");
       }
 
-      if (this.drills.length ==0) {
+      if (modified || this.drills.length ==0) {
         print("fetch from server");
         this.drills = await DrillList.fetchAll();
         storage.writeDrills(this.drills);
@@ -49,13 +49,14 @@ print(this.drills.length);
     var serverDate = DateTime.parse(serverSettings.modified);
 
     if (localSettings.modified == null || serverDate.isAfter(DateTime.parse(localSettings.modified))) {
-      print("is after");
-      print(serverSettings.modified);
-      print(localSettings.modified);
-      print((await storage.readSettings()).modified);
+print("is after");
+print(serverSettings.modified);
+print(localSettings.modified);
+print((await storage.readSettings()).modified);
       storage.writeSettings(serverSettings);
       return true;
     } 
+print("is not after");
     return  false;
   }
 
@@ -63,12 +64,6 @@ print(this.drills.length);
     var uri = Endpoint.uri('/drills/');
 
     final response = await http.get(uri.toString());
-    //final response = await http.get("https://api.kettinglopers.nl/drills/");
-    //final response = await http.get("https://jsonplaceholder.typicode.com/todos/1");
-
-    // print(response.body)
-
-    //return parseDrills(response.body);
     final parsedJson = json.jsonDecode(response.body);
 
     final List<Drill> list = new List<Drill>();
@@ -80,16 +75,18 @@ print(this.drills.length);
     return list;
   }
 
-  void addTagFilter(final String tag) {
-    print("add filter:"+tag);
-    this.tagFilter.add(tag);
+  void toggleTagFilter(final String tag) {
+    if (this.tagFilter.contains(tag)) {
+      this.tagFilter.remove(tag);
+    } else {
+      this.tagFilter.add(tag);
+    }
     applyTagFilter();
     notifyListeners();
   }
 
-  void removeTagFilter(final int idx) {
-    print("remove filter:"+idx.toString());
-    this.tagFilter.removeAt(idx);
+  void removeTagFilter(final String tag) {
+    this.tagFilter.remove(tag);
     applyTagFilter();
     notifyListeners();
   }
@@ -97,22 +94,17 @@ print(this.drills.length);
   void applyTagFilter() {
     this.filteredDrills = <Drill>[];
     if (this.tagFilter.length>0) {
-      print("check"+this.drills.length.toString());
       this.drills.forEach((_drill) {
-          var added = false;
-          this.tagFilter.forEach((_tag){
-            if (!added && _drill.tags.contains(_tag)) {
-print("found.."+_tag);
-              this.filteredDrills.add(_drill);
-              added = true;
-            }
-          });
+        var added = false;
+        this.tagFilter.forEach((_tag){
+          if (!added && _drill.tags.contains(_tag)) {
+            this.filteredDrills.add(_drill);
+            added = true;
+          }
+        });
       });
     } else {
       this.filteredDrills = this.drills;
     }
-    print(this.tagFilter);
-    print(this.drills[0].tags);
-    print(this.filteredDrills.length.toString());
   }
 }

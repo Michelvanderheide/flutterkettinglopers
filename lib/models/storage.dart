@@ -28,7 +28,7 @@ class Storage {
       // Read the file
       String contents = await file.readAsString();
       print("read drills from local");
-      print(contents);
+      //print(contents);
       List<Drill> list = new List<Drill>();
       json.jsonDecode(contents).forEach((v) {
         var drill = Drill.fromJson(v);
