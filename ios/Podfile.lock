@@ -14,7 +14,7 @@ PODS:
   - XCDYouTubeKit (2.8.0)
 
 DEPENDENCIES:
-  - Flutter (from `.symlinks/flutter/ios-release`)
+  - Flutter (from `.symlinks/flutter/ios`)
   - flutter_youtube (from `.symlinks/plugins/flutter_youtube/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
@@ -26,7 +26,7 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   Flutter:
-    :path: ".symlinks/flutter/ios-release"
+    :path: ".symlinks/flutter/ios"
   flutter_youtube:
     :path: ".symlinks/plugins/flutter_youtube/ios"
   path_provider:

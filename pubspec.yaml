@@ -1,5 +1,5 @@
-name: kettinglopers
-description: Kettinglopers hardloop app.
+name: hardloopscholing
+description: Oefeningen voor het verbeteren van je hardlooptechniek. Nuttig voor zowel atleet als trainer.
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -38,7 +38,7 @@ dev_dependencies:
   flutter_launcher_icons: any
 
 flutter_icons:
-  android: "launcher_icon" 
+  android: false 
   ios: true
   image_path: "assets/icons/icon.png"
 # For information on the generic Dart part of this file, see the

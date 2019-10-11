@@ -1,4 +1,4 @@
-package com.example.flutterhardloopscholing
+package cnl.hardloopscholing.flutter
 
 import android.os.Bundle
 

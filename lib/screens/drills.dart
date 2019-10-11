@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:kettinglopers/models/drill_list.dart';
-import 'package:kettinglopers/models/drill.dart';
+import 'package:hardloopscholing/models/drill_list.dart';
+import 'package:hardloopscholing/models/drill.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_tags/tag.dart';
@@ -95,7 +95,7 @@ class DrillTabContainer extends StatelessWidget {
                           ),
                           RaisedButton(
                             color: Colors.white,
-                            child: const Text('SLUITEN'),
+                            child: const Text('TERUG'),
                             onPressed: () { this.overlayEntry.remove(); },
                           ),
                           hasNextDrill==false ? null : RaisedButton(
@@ -109,10 +109,6 @@ class DrillTabContainer extends StatelessWidget {
                         ],
                       ),
                     ),
-
-
-
-
                     InkWell(
                       child: Container(
                         height: 250.0,
@@ -128,20 +124,24 @@ class DrillTabContainer extends StatelessWidget {
                       ),
                       onTap: () => playYoutube(context, drill.videoUrl)
                     ), 
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: drill.tags.map((item) => 
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(item,
-                          style: TextStyle(color: Colors.white38, fontSize: 20.0),
-                          ),
-                        )).toList(),
-                      
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: drill.tags.map((item) => 
+                          Flexible(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                item,
+                                style: TextStyle(color: Colors.white38, fontSize: 20.0),
+                                overflow: TextOverflow.fade,
+                              ),
+                            ),
+                          )).toList(),
+                        
+                        ),
                       ),
-                    ),
   
                     Container(
                       margin: EdgeInsets.only(bottom: 10.0, top:10.0),

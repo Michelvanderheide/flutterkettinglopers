@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'screens/sessions.dart';
 import 'screens/drills.dart';
-import 'screens/settings.dart';
 import 'models/drill_list.dart';
 
 void main() {
@@ -12,7 +10,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(builder: (context) => DrillList())
       ],
-      child: KettinglopersApp(),
+      child: HardloopscholingApp(),
     ),
   );
 }
@@ -28,11 +26,11 @@ class MyAppBar extends PreferredSize {
   );
 }
 
-class KettinglopersApp extends StatelessWidget {
+class HardloopscholingApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Kettinglopers",
+      title: "Hardloopscholing",
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
         canvasColor: Colors.black,
