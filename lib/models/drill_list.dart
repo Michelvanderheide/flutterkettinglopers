@@ -18,23 +18,16 @@ class DrillList extends ChangeNotifier {
   List<Drill> filteredDrills = [];
 
   Future<List<Drill>> fetchAllCached() async {
-print("fetchAllCached");
-print(this.drills.length);
     if (this.drills.length==0) {
       this.drills = await storage.readDrills();
-print("fetchAllCached 2:");
-print(this.drills.length);
       bool modified = false;
       if (await this.isModified()) {
         modified = true;
-        print("modified");
       }
 
       if (modified || this.drills.length ==0) {
-        print("fetch from server");
         this.drills = await DrillList.fetchAll();
         storage.writeDrills(this.drills);
-
       } else {
         print ("fetch from local storage");
       }
@@ -49,14 +42,9 @@ print(this.drills.length);
     var serverDate = DateTime.parse(serverSettings.modified);
 
     if (localSettings.modified == null || serverDate.isAfter(DateTime.parse(localSettings.modified))) {
-print("is after");
-print(serverSettings.modified);
-print(localSettings.modified);
-print((await storage.readSettings()).modified);
       storage.writeSettings(serverSettings);
       return true;
     } 
-print("is not after");
     return  false;
   }
 

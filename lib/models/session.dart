@@ -36,8 +36,6 @@ interface TrainingSession {
     var uri = Endpoint.uri('/locations');
 
     final resp = await http.get(uri.toString());
-
-    print('response is $resp');
     return null;
   }
 

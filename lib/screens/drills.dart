@@ -54,14 +54,11 @@ class DrillTabContainer extends StatelessWidget {
           background: Container(color: Colors.transparent),
           key: Key(drill.title),
           onDismissed: (direction) {
-            print("dismis..");
             
             this.overlayEntry.remove();
             if(direction == DismissDirection.startToEnd && hasPrevDrill){
-            print(drill);
               showDetails(context, drills, index-1);
             } else if(direction == DismissDirection.endToStart && hasNextDrill){
-            print(drill);
               showDetails(context, drills, index+1);
             }
           },
@@ -81,7 +78,7 @@ class DrillTabContainer extends StatelessWidget {
                         children: <Widget>[
                           hasPrevDrill==false ? null : RaisedButton(
                             color: Colors.white,
-                            child: Text(" << "),
+                            child: Text(" <"),
                             onPressed: () { 
                                 this.overlayEntry.remove();
                                 showDetails(context, drills, index-1);
@@ -100,7 +97,7 @@ class DrillTabContainer extends StatelessWidget {
                           ),
                           hasNextDrill==false ? null : RaisedButton(
                             color: Colors.white,
-                            child: Text(" >> "),
+                            child: Text(" >"),
                             onPressed: () { 
                                 this.overlayEntry.remove();
                                 showDetails(context, drills, index+1);
@@ -134,7 +131,7 @@ class DrillTabContainer extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 item,
-                                style: TextStyle(color: Colors.white38, fontSize: 20.0),
+                                style: TextStyle(color: Colors.white38, fontSize: 15.0),
                                 overflow: TextOverflow.fade,
                               ),
                             ),

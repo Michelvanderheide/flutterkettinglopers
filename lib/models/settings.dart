@@ -10,7 +10,6 @@ class Settings  {
   });
 
   factory Settings.fromJson(Map<String, dynamic> json) {
-    print("fromJson");
     if (json == null)
       return new Settings();
 
@@ -20,7 +19,6 @@ class Settings  {
   }
 
   Map<String, dynamic>toJson() {
-    print("toJson");
     return {
       "modified": modified,
     };
@@ -31,11 +29,7 @@ class Settings  {
 
     final response = await http.get(uri.toString());
     final parsedJson = json.jsonDecode(response.body);
-print("settings:");
-print(parsedJson);
     final Settings settings = Settings.fromJson(parsedJson['data']);
-print(settings);
-
     return settings;
   }
 

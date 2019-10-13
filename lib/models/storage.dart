@@ -27,8 +27,6 @@ class Storage {
 
       // Read the file
       String contents = await file.readAsString();
-      print("read drills from local");
-      //print(contents);
       List<Drill> list = new List<Drill>();
       json.jsonDecode(contents).forEach((v) {
         var drill = Drill.fromJson(v);
@@ -45,8 +43,6 @@ class Storage {
 
   Future<File> writeDrills(List<Drill> drills) async {
     final file = await _localDrillsFile;
-
-    print("write drills to local");
     // Write the file
     return file.writeAsString(json.jsonEncode(drills));
   }
@@ -57,15 +53,9 @@ class Storage {
 
       // Read the file
       String contents = await file.readAsString();
-print("readSettings.contents");
-print(contents);
       Settings result = Settings.fromJson(json.jsonDecode(contents));
-print(result);
       return result;
     } catch (e) {
-
-      print("error:");
-      print(e);
       // If encountering an error, return 0
       return new Settings();
     }
